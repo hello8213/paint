@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="免费绘画检测与反馈工具">
+  <title>绘画观察室 | 免费绘画分析</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="logo">✳</span> 绘画观察室</a>
+    <span class="privacy">● 图片仅在本地分析</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">FREE ARTWORK CHECKUP</p>
+      <h1>看见作品里的<br><span>色彩与细节</span></h1>
+      <p>免费分析绘画的色彩、亮度、对比度和画面结构，无需注册，无需 API 密钥。</p>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <p class="eyebrow">STEP 01</p>
+        <h2>上传你的作品</h2>
+
+        <input id="fileInput" type="file"
+          accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+
+        <div id="dropzone" class="dropzone" tabindex="0" role="button">
+          <div class="upload-icon">↑</div>
+          <strong>点击选择图片，或拖放到这里</strong>
+          <p>支持 PNG、JPG、WEBP、GIF，最大 15 MB</p>
+          <button id="chooseBtn" class="button secondary" type="button">
+            选择图片
+          </button>
+        </div>
+
+        <div id="previewWrap" class="preview-wrap hidden">
+          <div class="preview-heading">
+            <span id="fileName"></span>
+            <button id="removeBtn" class="text-button" type="button">移除</button>
+          </div>
+          <img id="preview" alt="上传图片预览">
+          <p id="imageMeta" class="muted"></p>
+        </div>
+
+        <p id="error" class="error hidden" role="alert"></p>
+
+        <div class="actions">
+          <button id="analyzeBtn" class="button primary" disabled type="button">
+            分析这幅画 ↗
+          </button>
+          <button id="resetBtn" class="button secondary" type="button">重置</button>
+        </div>
+        <p class="footnote">图片不会上传到服务器，分析在你的设备上完成。</p>
+      </div>
+
+      <div class="panel">
+        <p class="eyebrow">WHAT YOU'LL GET</p>
+        <h2>报告包含什么？</h2>
+
+        <div class="feature">
+          <span class="feature-icon purple">◒</span>
+          <div><strong>色彩观察</strong><p>提取代表色，查看色彩丰富度和饱和度。</p></div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon peach">◐</span>
+          <div><strong>明暗与对比</strong><p>检查整体亮度和明暗变化。</p></div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon mint">▦</span>
+          <div><strong>画面结构</strong><p>分析画幅比例和边缘变化。</p></div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon yellow">✎</span>
+          <div><strong>练习建议</strong><p>根据分析指标生成可执行的练习建议。</p></div>
+        </div>
+
+        <div class="notice">
+          <strong>请注意</strong>
+          <p>这是图像统计与规则分析，不是真正的视觉 AI。结果不能完全判断绘画技巧、情绪或艺术价值。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reportSection" class="report hidden">
+      <div class="report-heading">
+        <div>
+          <p class="eyebrow">STEP 02 · YOUR REPORT</p>
+          <h2>作品观察报告</h2>
+          <p id="reportSubtitle" class="muted"></p>
+        </div>
+        <button id="downloadBtn" class="button secondary" type="button">
+          下载 TXT 报告
+        </button>
+      </div>
+
+      <div id="metrics" class="metrics"></div>
+
+      <div class="report-grid">
+        <article class="panel">
+          <h3>代表色</h3>
+          <div id="palette" class="palette"></div>
+          <p id="paletteText" class="report-copy"></p>
+        </article>
+        <article class="panel">
+          <h3>色彩与明暗观察</h3>
+          <div id="observations" class="report-list"></div>
+        </article>
+        <article class="panel">
+          <h3>可能的优势</h3>
+          <div id="strengths" class="report-list"></div>
+        </article>
+        <article class="panel">
+          <h3>下一步练习建议</h3>
+          <div id="suggestions" class="report-list"></div>
+        </article>
+      </div>
+
+      <p class="footnote">
+        数值会受拍摄光线、扫描质量、滤镜和图片压缩影响。
+        本报告仅供参考，不代表对作品质量的客观评分。
+      </p>
+    </section>
+
+    <footer>
+      <span>绘画观察室</span>
+      <span>免费 · 无需账号 · 本地分析</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+
